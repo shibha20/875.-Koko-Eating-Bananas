@@ -1,0 +1,22 @@
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        left = 1
+        right = max(piles)
+        res = max(piles)
+
+        while left <= right:
+            mid = (left+right) //2
+            totalhours = 0 
+            for i in range(0,len(piles)):
+                totalhours = totalhours+ ceil(piles[i]/mid)           
+            if totalhours > h:
+                ###shift left pointer to look for bigger speed of eating banana
+                left = mid+1
+            elif totalhours <= h:
+                ##shift right pointer to look for smaller speed of eating banana
+                res = mid
+                right = mid - 1
+
+        return res
+
+        
